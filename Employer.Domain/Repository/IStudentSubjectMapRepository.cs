@@ -3,11 +3,10 @@ using Employer.Domain.Entities;
 
 namespace Employer.Domain.Repository
 {
-    public interface ISubjectRepository
+    public interface IStudentSubjectMapRepository
     {
-        IEnumerable<Subject> GetSubjects();
+        IEnumerable<StudentSubjectMap> GetStudentSubjectMap();
         
-        Subject GetSubjectById(int studentId);
         
         void CreateSubject(Subject student);
         
