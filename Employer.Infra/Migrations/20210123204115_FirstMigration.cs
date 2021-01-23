@@ -18,8 +18,8 @@ namespace Employer.Infra.Migrations
                     Surname = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     Cpf = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
                     Course = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    CreateAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    BirthDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    CreateAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "now()")
                 },
                 constraints: table =>
                 {
@@ -34,7 +34,7 @@ namespace Employer.Infra.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Description = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     Situation = table.Column<bool>(type: "boolean", nullable: false, defaultValue: true),
-                    RegistrationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    RegistrationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     CreateAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "now()"),
                     UpdateAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },

@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Employer.Infra.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210123201044_FirstMigration")]
+    [Migration("20210123204115_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,16 +28,15 @@ namespace Employer.Infra.Migrations
                         .HasColumnType("integer")
                         .UseIdentityByDefaultColumn();
 
-                    b.Property<DateTime>("BirthDate")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<string>("Course")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
                     b.Property<DateTime>("CreateAt")
-                        .HasColumnType("timestamp without time zone");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp without time zone")
+                        .HasDefaultValueSql("now()");
 
                     b.HasKey("Id")
                         .HasName("PK_STUDENT");
@@ -91,9 +90,6 @@ namespace Employer.Infra.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("character varying(150)");
 
-                    b.Property<DateTime>("RegistrationDate")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<bool>("Situation")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("boolean")
@@ -131,6 +127,25 @@ namespace Employer.Infra.Migrations
                                 .HasForeignKey("StudentId");
                         });
 
+                    b.OwnsOne("Employer.Domain.ValueObjects.Date", "BirthDate", b1 =>
+                        {
+                            b1.Property<int>("StudentId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("integer")
+                                .UseIdentityByDefaultColumn();
+
+                            b1.Property<DateTime>("Code")
+                                .HasColumnType("timestamp without time zone")
+                                .HasColumnName("BirthDate");
+
+                            b1.HasKey("StudentId");
+
+                            b1.ToTable("Student");
+
+                            b1.WithOwner()
+                                .HasForeignKey("StudentId");
+                        });
+
                     b.OwnsOne("Employer.Domain.ValueObjects.Name", "Name", b1 =>
                         {
                             b1.Property<int>("StudentId")
@@ -157,6 +172,8 @@ namespace Employer.Infra.Migrations
                                 .HasForeignKey("StudentId");
                         });
 
+                    b.Navigation("BirthDate");
+
                     b.Navigation("Cpf");
 
                     b.Navigation("Name");
@@ -181,6 +198,30 @@ namespace Employer.Infra.Migrations
                     b.Navigation("Student");
 
                     b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Employer.Domain.Entities.Subject", b =>
+                {
+                    b.OwnsOne("Employer.Domain.ValueObjects.Date", "RegistrationDate", b1 =>
+                        {
+                            b1.Property<int>("SubjectId")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("integer")
+                                .UseIdentityByDefaultColumn();
+
+                            b1.Property<DateTime>("Code")
+                                .HasColumnType("timestamp without time zone")
+                                .HasColumnName("RegistrationDate");
+
+                            b1.HasKey("SubjectId");
+
+                            b1.ToTable("Subject");
+
+                            b1.WithOwner()
+                                .HasForeignKey("SubjectId");
+                        });
+
+                    b.Navigation("RegistrationDate");
                 });
 
             modelBuilder.Entity("Employer.Domain.Entities.Student", b =>

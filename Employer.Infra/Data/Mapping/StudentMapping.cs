@@ -21,9 +21,6 @@ namespace Employer.Infra.Data.Mapping
                 .HasMaxLength(50)
                 .IsRequired();
 
-            entity.Property(x => x.BirthDate)
-                .IsRequired();
-
             entity.Property(x => x.CreateAt)
                 .HasDefaultValueSql("now()")
                 .IsRequired();
@@ -38,6 +35,14 @@ namespace Employer.Infra.Data.Mapping
                     sa.Property(p => p.Surname)
                         .HasMaxLength(50)
                         .HasColumnName("Surname");
+                });
+            
+            entity.OwnsOne(o => o.BirthDate,
+                sa =>
+                {
+                    sa.Property(p => p.Code)
+                        .HasColumnName("BirthDate")
+                        .IsRequired();
                 });
 
             entity.OwnsOne(o => o.Cpf,

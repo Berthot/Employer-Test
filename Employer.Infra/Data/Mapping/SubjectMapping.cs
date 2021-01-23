@@ -26,8 +26,13 @@ namespace Employer.Infra.Data.Mapping
                 .HasDefaultValue(true)
                 .IsRequired();
             
-            entity.Property(x => x.RegistrationDate)
-                .IsRequired();
+            entity.OwnsOne(o => o.RegistrationDate,
+                sa =>
+                {
+                    sa.Property(p => p.Code)
+                        .HasColumnName("RegistrationDate")
+                        .IsRequired();
+                });
             
             entity.Property(x => x.CreateAt)
                 .HasDefaultValueSql("now()")
