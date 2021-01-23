@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Employer.Domain.ValueObjects;
 
 namespace Employer.Domain.Entities
 {
@@ -10,7 +11,7 @@ namespace Employer.Domain.Entities
         public string Description { get; set; }
         
         public bool Situation { get; set; }
-        public DateTime RegistrationDate { get; set; }
+        public Date RegistrationDate { get; set; }
         
         public DateTime CreateAt { get; set; }
         
