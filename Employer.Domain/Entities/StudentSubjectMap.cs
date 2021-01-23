@@ -1,3 +1,5 @@
+using Employer.Domain.ValueObjects;
+
 namespace Employer.Domain.Entities
 {
     public class StudentSubjectMap
@@ -5,7 +7,7 @@ namespace Employer.Domain.Entities
         
         public int Id { get; set; }
         
-        public int Note { get; set; }
+        public Note Note { get; set; }
         public int StudentId { get; set; }
         
         public int SubjectId { get; set; }

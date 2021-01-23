@@ -16,9 +16,14 @@ namespace Employer.Infra.Data.Mapping
             entity.Property(x => x.Id)
                 .ValueGeneratedOnAdd()
                 .UseIdentityColumn();
-            
-            entity.Property(x => x.Note)
-                .IsRequired();     
+
+            entity.OwnsOne(o => o.Note,
+                sa =>
+                {
+                    sa.Property(p => p.Value)
+                        .HasColumnName("Note")
+                        .IsRequired();
+                });
             
             entity.Property(x => x.StudentId)
                 .IsRequired();

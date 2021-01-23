@@ -18,9 +18,18 @@ namespace Employer.Infra.Data.Mapping
                 .ValueGeneratedOnAdd()
                 .UseIdentityColumn();
 
-            entity.Property(x => x.Description)
-                .HasMaxLength(150)
-                .IsRequired();
+            // entity.Property(x => x.Description)
+            //     .HasMaxLength(150)
+            //     .IsRequired();
+            
+            entity.OwnsOne(o => o.Description,
+                sa =>
+                {
+                    sa.Property(p => p.Value)
+                        .HasColumnName("Description")
+                        .HasMaxLength(150)
+                        .IsRequired();
+                });
             
             entity.Property(x => x.Situation)
                 .HasDefaultValue(true)
