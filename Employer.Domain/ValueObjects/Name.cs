@@ -11,13 +11,18 @@ namespace Employer.Domain.ValueObjects
 
         public bool Validate()
         {
-            return ValidateFirstName();
-            
+            return ValidateFirstName() || ValidateSurname();
+
         }
 
         private bool ValidateFirstName()
         {
-            return Regex.IsMatch(FirstName, @"^[a-zA-Z]+$");
+            return Regex.IsMatch(FirstName, @"^[a-zA-Z]{50}$");
+        }
+        
+        private bool ValidateSurname()
+        {
+            return Surname.Length <= 50;
         }
         
     }
