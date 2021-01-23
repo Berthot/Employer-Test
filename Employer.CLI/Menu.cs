@@ -9,9 +9,11 @@ namespace Employer.CLI
         {
             var text = new List<string>()
             {
-                " (1) Sku's Logisticas",
-                " (2) Produto",
-                " (3) Relatorios",
+                " (1) Cadastro de aluno",
+                " (2) Cadastro de materia",
+                " (3) Cadastro de Nota",
+                " (4) Visualização de notas do aluno",
+                " (5) Relatorios",
                 " (0) Sair",
             };
             PrintMenu(text, textLenght);
