@@ -1,15 +1,24 @@
+using System;
 using System.Text.RegularExpressions;
 
 namespace Employer.Domain.ValueObjects
 {
     public class Description
     {
-        
+        public Description(string name)
+        {
+            Name = name;
+        }
+
         public string Name { get; set; }
         
-        private bool ValidateDescription()
+        public bool NotValidateDescription()
         {
-            return Regex.IsMatch(Name, @"^[a-zA-Z]{150}$");
+            // TODO verificar regex para validar letras
+            
+            return (Regex.IsMatch(Name.Replace(" ", ""), @"^([a-zA-Z])+$") && Name.Length <= 50) == false;
         }
+
+
     }
 }

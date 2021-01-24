@@ -10,7 +10,7 @@ namespace Employer.Domain.IRepository
 
         Student GetStudentById(int studentId);
         
-        Student? GetStudentByCpf(string cpf);
+        Student GetStudentByCpf(string cpf);
         
         Student GetStudentByName(Name name);
         

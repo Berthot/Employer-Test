@@ -1,4 +1,6 @@
 using System;
+using System.Globalization;
+using Employer.Domain.Entities;
 
 namespace Employer.Domain.DTO
 {
@@ -11,7 +13,22 @@ namespace Employer.Domain.DTO
             RegistrationDate = registrationDate;
         }
 
-        public int Id { get; set; }
+        public SubjectDto()
+        {
+        }
+
+        public SubjectDto(Subject subjectModel)
+        {
+            Id = subjectModel.Id.ToString();
+            Description = subjectModel.Description.Name;
+            Situation = subjectModel.Situation.ToString();
+            RegistrationDate = subjectModel.RegistrationDate.Code.ToString(CultureInfo.CurrentCulture);
+            CreateAt = subjectModel.CreateAt;
+            UpdateAt = subjectModel.UpdateAt;
+        }
+
+
+        public string Id { get; set; }
         
         public string Description { get; set; }
         

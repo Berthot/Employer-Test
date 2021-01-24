@@ -11,10 +11,11 @@ namespace Employer.Domain.IRepository
         
         void CreateSubject(Subject student);
         
-        void DeleteSubject(int studentId);
+        void DeleteSubject(Subject studentId);
         
         void UpdateSubject(Subject student);
         
         void Save();
+        Subject GetSubjectByDescription(string descriptionName);
     }
 }

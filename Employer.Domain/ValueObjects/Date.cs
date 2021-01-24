@@ -54,6 +54,10 @@ namespace Employer.Domain.ValueObjects
                 throw;
             }
         }
+        public bool NotValidateDateSubject()
+        {
+            return ValidateGreaterThan(DateTime.Now);
+        }
 
         public bool NotValidateDate()
         {

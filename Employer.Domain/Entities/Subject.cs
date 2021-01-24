@@ -7,8 +7,20 @@ namespace Employer.Domain.Entities
 {
     public class Subject
     {
+        public Subject()
+        {
+        }
+
+        public Subject(Description description, ESituation situation, Date registrationDate)
+        {
+            Description = description;
+            Situation = situation;
+            RegistrationDate = registrationDate;
+        }
+
         public int Id { get; set; }
         
+        //TODO remover nome
         public string Name { get; set; }
         
         public Description Description { get; set; }

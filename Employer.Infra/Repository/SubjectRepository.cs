@@ -1,7 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Employer.Domain.Entities;
 using Employer.Domain.IRepository;
-using Employer.Domain.ValueObjects;
 using Employer.Infra.Data;
 
 namespace Employer.Infra.Repository
@@ -17,32 +18,61 @@ namespace Employer.Infra.Repository
 
         public IEnumerable<Subject> GetSubjects()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public Subject GetSubjectById(int studentId)
+        public Subject GetSubjectById(int subjectId)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
-        public void CreateSubject(Subject student)
+        public void CreateSubject(Subject subject)
         {
-            throw new System.NotImplementedException();
+            using var transaction = _context.Database.BeginTransaction();
+            try
+            {
+                _context.Subject.Add(subject);
+                Save();
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw new Exception("Erro ao salvar materia no banco");
+            }
         }
 
-        public void DeleteSubject(int studentId)
+        public void DeleteSubject(Subject subject)
         {
-            throw new System.NotImplementedException();
+            using var transaction = _context.Database.BeginTransaction();
+            try
+            {
+                _context.Subject.Remove(subject);
+                Save();
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw new Exception("Erro ao remover materia no banco");
+            }
         }
 
-        public void UpdateSubject(Subject student)
+        public void UpdateSubject(Subject subject)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public void Save()
         {
             _context.SaveChanges();
+        }
+
+        public Subject GetSubjectByDescription(string descriptionName)
+        {
+            return _context
+                .Subject
+                .FirstOrDefault(x => x.Description.Name == descriptionName);
         }
     }
 }
