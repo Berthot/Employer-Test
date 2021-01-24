@@ -1,4 +1,5 @@
 using Employer.Domain.Entities;
+using Employer.Domain.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -18,10 +19,6 @@ namespace Employer.Infra.Data.Mapping
                 .ValueGeneratedOnAdd()
                 .UseIdentityColumn();
 
-            // entity.Property(x => x.Description)
-            //     .HasMaxLength(150)
-            //     .IsRequired();
-            
             entity.OwnsOne(o => o.Description,
                 sa =>
                 {
@@ -32,7 +29,7 @@ namespace Employer.Infra.Data.Mapping
                 });
             
             entity.Property(x => x.Situation)
-                .HasDefaultValue(true)
+                .HasDefaultValue(ESituation.Active)
                 .IsRequired();
             
             entity.OwnsOne(o => o.RegistrationDate,
