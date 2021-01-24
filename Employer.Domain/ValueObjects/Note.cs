@@ -6,7 +6,7 @@ namespace Employer.Domain.ValueObjects
 
         public void ValidateNoteValou()
         {
-            
+            // regex para validar a nota
         }
     }
 }

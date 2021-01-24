@@ -4,11 +4,12 @@ namespace Employer.Domain.ValueObjects
 {
     public class Description
     {
-        public string Value { get; set; }
+        
+        public string Name { get; set; }
         
         private bool ValidateDescription()
         {
-            return Regex.IsMatch(Value, @"^[a-zA-Z]{150}$");
+            return Regex.IsMatch(Name, @"^[a-zA-Z]{150}$");
         }
     }
 }

@@ -4,6 +4,11 @@ namespace Employer.Domain.ValueObjects
 {
     public class Cpf
     {
+        public Cpf(string code)
+        {
+            Code = code;
+        }
+
         public string Code { get; set; }
 
         public bool Validate()

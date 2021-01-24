@@ -1,4 +1,7 @@
 ﻿using System;
+using Employer.CLI.Application;
+using Employer.CLI.CLI;
+using Employer.CLI.Service;
 
 namespace Employer.CLI
 {
@@ -6,6 +9,7 @@ namespace Employer.CLI
     {
         static void Main(string[] args)
         {
+            
             var option = "";
             while (option != "0")
             {
@@ -15,10 +19,13 @@ namespace Employer.CLI
                 switch (option)
                 {
                     case "1": // (1) Cadastro de aluno:
+                        new StudentApplication().RegisterNewStudent();
                         break;
                     case "2": // (2) Cadastro de materia:
+                        new SubjectService().RegisterNewSubject();
                         break;
                     case "3": // (3) Cadastro de Nota:
+                        new NoteService().RegisterNewSubject();
                         break;
                     case "4": // (4) Visualização de notas do aluno:
                         break;

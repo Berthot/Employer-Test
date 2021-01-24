@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Employer.CLI
+namespace Employer.CLI.CLI
 {
     public static class Menu
     {
@@ -33,8 +33,8 @@ namespace Employer.CLI
 
         private static void WriteText(int textLenght, string text)
         {
-            var test = $"{$"| {text}".PadRight(textLenght - 4, ' ')} |";
-            Console.WriteLine(text);
+            var newText = $"{$"| {text}".PadRight(textLenght - 4, ' ')} |";
+            Console.WriteLine(newText);
         }
     }
 }

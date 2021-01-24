@@ -4,6 +4,12 @@ namespace Employer.Domain.ValueObjects
 {
     public class Name
     {
+        public Name(string firstName, string surname)
+        {
+            FirstName = firstName;
+            Surname = surname;
+        }
+
         public string FirstName { get; set; }
         
         public string Surname { get; set; }
@@ -12,7 +18,6 @@ namespace Employer.Domain.ValueObjects
         public bool Validate()
         {
             return ValidateFirstName() || ValidateSurname();
-
         }
 
         private bool ValidateFirstName()
@@ -24,6 +29,10 @@ namespace Employer.Domain.ValueObjects
         {
             return Surname.Length <= 50;
         }
-        
+
+        public string GetFullName()
+        {
+            return $"{FirstName} {Surname}";
+        }
     }
 }

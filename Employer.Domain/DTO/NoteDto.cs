@@ -1,0 +1,19 @@
+using Employer.Domain.Entities;
+using Employer.Domain.ValueObjects;
+
+namespace Employer.Domain.DTO
+{
+    public class NoteDto
+    {
+        public NoteDto(StudentSubjectMap studentSubjectMap)
+        {
+            Student = studentSubjectMap.Student.Name.GetFullName();
+            Description = studentSubjectMap.Subject.Description.Name.ToString();
+            Note = studentSubjectMap.Note.ToString();
+        }
+
+        public string Student { get; set; }
+        public string Description { get; set; }
+        public string Note { get; set; }
+    }
+}

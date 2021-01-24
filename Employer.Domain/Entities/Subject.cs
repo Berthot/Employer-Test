@@ -9,6 +9,8 @@ namespace Employer.Domain.Entities
     {
         public int Id { get; set; }
         
+        public string Name { get; set; }
+        
         public Description Description { get; set; }
         
         public ESituation Situation { get; set; }

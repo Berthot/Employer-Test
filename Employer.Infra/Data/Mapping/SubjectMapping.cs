@@ -22,7 +22,7 @@ namespace Employer.Infra.Data.Mapping
             entity.OwnsOne(o => o.Description,
                 sa =>
                 {
-                    sa.Property(p => p.Value)
+                    sa.Property(p => p.Name)
                         .HasColumnName("Description")
                         .HasMaxLength(150)
                         .IsRequired();

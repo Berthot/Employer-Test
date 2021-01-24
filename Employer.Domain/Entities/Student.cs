@@ -6,6 +6,15 @@ namespace Employer.Domain.Entities
 {
     public class Student
     {
+        public Student(Name name, Cpf cpf, string course, Date birthDate)
+        {
+            Name = name;
+            Cpf = cpf;
+            Course = course;
+            BirthDate = birthDate;
+            CreateAt = DateTime.Now;
+        }
+
         public int Id { get; set; }
         
         public Name Name { get; set; }
