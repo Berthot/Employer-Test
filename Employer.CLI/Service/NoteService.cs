@@ -34,9 +34,10 @@ namespace Employer.CLI.Service
         private static NoteDto GetNoteDto()
         {
             var student = UserInteraction.FieldToFill("Nome do aluno");
+            var studentCpf = UserInteraction.FieldToFill("Cpf do aluno");
             var subject = UserInteraction.FieldToFill("Matéria");
-            var note = UserInteraction.FieldToFill("Nota entre (0-100)");
-            return new NoteDto(student, subject, note);
+            var note = UserInteraction.FieldToFill("Nota entre (0 e 100)");
+            return new NoteDto(student, subject, note, studentCpf);
         }
     }
 }

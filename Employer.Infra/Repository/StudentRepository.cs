@@ -79,7 +79,6 @@ namespace Employer.Infra.Repository
 
         public void UpdateStudent(Student student)
         {
-            throw new NotImplementedException();
         }
 
         public void Save()

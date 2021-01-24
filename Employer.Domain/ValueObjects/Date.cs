@@ -18,7 +18,6 @@ namespace Employer.Domain.ValueObjects
             Code = dateTime;
         }
 
-        // TODO mudar o nome
         private string DateString { get; set; }
         public DateTime Code { get; set; }
 

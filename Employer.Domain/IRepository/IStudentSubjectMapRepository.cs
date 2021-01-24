@@ -8,12 +8,16 @@ namespace Employer.Domain.IRepository
         IEnumerable<StudentSubjectMap> GetStudentSubjectMap();
         
         
-        void CreateSubject(Subject student);
+        void CreateCreateStudentSubjectMap(StudentSubjectMap student);
         
-        void DeleteSubject(int studentId);
+        void DeleteStudentSubjectMap(StudentSubjectMap studentId);
         
-        void UpdateSubject(Subject student);
+        void UpdateCreateStudentSubjectMap(StudentSubjectMap student);
         
         void Save();
+        Student GetStudentByCpf(string cpfCode);
+        
+        Subject GetSubjectByDescription(string descriptionName);
+        void UpdateStudent(Student student);
     }
 }

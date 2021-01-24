@@ -53,7 +53,7 @@ namespace Employer.API.Controllers
                 var studentModel = _service.GetStudentToDelete(student);
                 if (studentModel == default)
                     return BadRequest(new List<string>{"Estudante não cadastrado no sistema"});
-                _repo.DeleteStudent(studentModel);
+                _repo.DeleteStudent(studentModel); // TODO deixar com a service fazer isso
 
                 return Ok($"Estudante portador do cpf: [ {studentModel.Cpf.Code} ] foi excomungado");
             }

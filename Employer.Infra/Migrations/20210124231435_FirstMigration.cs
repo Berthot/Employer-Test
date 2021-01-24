@@ -32,7 +32,6 @@ namespace Employer.Infra.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
                     Description = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: true),
                     Situation = table.Column<int>(type: "integer", nullable: false, defaultValue: 1),
                     RegistrationDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
@@ -53,7 +52,7 @@ namespace Employer.Infra.Migrations
                     Note = table.Column<int>(type: "integer", nullable: true),
                     StudentId = table.Column<int>(type: "integer", nullable: false),
                     SubjectId = table.Column<int>(type: "integer", nullable: false),
-                    UpdateAt = table.Column<int>(type: "integer", nullable: false)
+                    UpdateAt = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {

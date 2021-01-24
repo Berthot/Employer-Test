@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Employer.Infra.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20210124185535_FirstMigration")]
+    [Migration("20210124231435_FirstMigration")]
     partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,8 +57,8 @@ namespace Employer.Infra.Migrations
                     b.Property<int>("SubjectId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("UpdateAt")
-                        .HasColumnType("integer");
+                    b.Property<DateTime>("UpdateAt")
+                        .HasColumnType("timestamp without time zone");
 
                     b.HasKey("Id")
                         .HasName("PK_STUDENT_SUBJECT_MAP");
@@ -81,9 +81,6 @@ namespace Employer.Infra.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("timestamp without time zone")
                         .HasDefaultValueSql("now()");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
 
                     b.Property<int>("Situation")
                         .ValueGeneratedOnAdd()

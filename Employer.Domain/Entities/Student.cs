@@ -31,6 +31,6 @@ namespace Employer.Domain.Entities
         public Date BirthDate { get; set; }
         
         public DateTime CreateAt { get; set; }
-        public IEnumerable<StudentSubjectMap> StudentSubjectMaps { get; set; }
+        public List<StudentSubjectMap> StudentSubjectMaps { get; set; }
     }
 }

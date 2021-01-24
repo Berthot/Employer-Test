@@ -60,7 +60,6 @@ namespace Employer.Infra.Repository
 
         public void UpdateSubject(Subject subject)
         {
-            throw new NotImplementedException();
         }
 
         public void Save()
