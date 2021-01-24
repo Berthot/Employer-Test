@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Employer.Domain.Entities;
 
-namespace Employer.Domain.Repository
+namespace Employer.Domain.IRepository
 {
     public interface ISubjectRepository
     {

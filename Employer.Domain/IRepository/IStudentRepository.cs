@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Employer.Domain.Entities;
 using Employer.Domain.ValueObjects;
 
-namespace Employer.Domain.Repository
+namespace Employer.Domain.IRepository
 {
     public interface IStudentRepository
     {
