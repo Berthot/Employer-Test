@@ -15,6 +15,10 @@ namespace Employer.Domain.Entities
             CreateAt = DateTime.Now;
         }
 
+        public Student()
+        {
+        }
+
         public int Id { get; set; }
         
         public Name Name { get; set; }
