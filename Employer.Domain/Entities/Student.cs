@@ -17,6 +17,7 @@ namespace Employer.Domain.Entities
 
         public Student()
         {
+            
         }
 
         public int Id { get; set; }

@@ -6,7 +6,7 @@ using Employer.Infra.Data;
 
 namespace Employer.Infra.Repository
 {
-    public class SubjectRepository : IStudentRepository
+    public class SubjectRepository : ISubjectRepository
     {
         private readonly Context _context;
 
@@ -15,37 +15,27 @@ namespace Employer.Infra.Repository
             _context = context;
         }
 
-        public IEnumerable<Student> GetStudents()
+        public IEnumerable<Subject> GetSubjects()
         {
             throw new System.NotImplementedException();
         }
 
-        public Student GetStudentById(int studentId)
+        public Subject GetSubjectById(int studentId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Student GetStudentByName(Name name)
+        public void CreateSubject(Subject student)
         {
             throw new System.NotImplementedException();
         }
 
-        public Student GetStudentWithNotesByName(Name name)
+        public void DeleteSubject(int studentId)
         {
             throw new System.NotImplementedException();
         }
 
-        public void CreateStudent(Student student)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteStudent(int studentId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void UpdateStudent(Student student)
+        public void UpdateSubject(Subject student)
         {
             throw new System.NotImplementedException();
         }
