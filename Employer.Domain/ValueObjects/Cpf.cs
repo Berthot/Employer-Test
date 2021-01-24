@@ -11,9 +11,14 @@ namespace Employer.Domain.ValueObjects
 
         public string Code { get; set; }
 
-        public bool Validate()
+        public bool NotValidate()
         {
-            return Regex.IsMatch(Code, "[0-9]{11}");
+            return (Regex.IsMatch(Code, "[0-9]") && NotValidateCpfLenght()) == false;
+        }
+        
+        public bool NotValidateCpfLenght()
+        {
+            return Code.Length <= 11;
         }
     }
 }

@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Employer.Domain.Entities;
 using Employer.Domain.IRepository;
 using Employer.Domain.ValueObjects;
 using Employer.Infra.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Employer.Infra.Repository
 {
@@ -27,7 +29,9 @@ namespace Employer.Infra.Repository
 
         public Student GetStudentByCpf(string cpf)
         {
-            throw new NotImplementedException();
+            return _context.Students
+                .Include(x=>x.StudentSubjectMaps)
+                .FirstOrDefault(x => x.Cpf.Code == cpf);
         }
 
         public Student GetStudentByName(Name name)
@@ -53,12 +57,24 @@ namespace Employer.Infra.Repository
             catch (Exception)
             {
                 transaction.Rollback();
+                throw new Exception("Erro ao salvar estudante no banco");
             }
         }
 
-        public void DeleteStudent(int studentId)
+        public void DeleteStudent(Student student)
         {
-            throw new NotImplementedException();
+            using var transaction = _context.Database.BeginTransaction();
+            try
+            {
+                _context.Students.Remove(student);
+                Save();
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw new Exception("Erro ao salvar estudante no banco");
+            }
         }
 
         public void UpdateStudent(Student student)

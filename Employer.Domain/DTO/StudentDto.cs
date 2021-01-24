@@ -1,4 +1,5 @@
 using System;
+using Employer.Domain.Entities;
 
 namespace Employer.Domain.DTO
 {
@@ -12,6 +13,22 @@ namespace Employer.Domain.DTO
             Cpf = cpf;
             Course = course;
         }
+
+        public StudentDto()
+        {
+        }
+
+        public StudentDto(Student student)
+        {
+            Id = student.Id;
+            Name = student.Name.FirstName;
+            Surname = student.Name.Surname;
+            BirthDate = student.BirthDate.Code.ToString();
+            Cpf = student.Cpf.Code;
+            Course = student.Course;
+            CreatAt = student.CreateAt;
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }

@@ -10,7 +10,7 @@ namespace Employer.Domain.IRepository
 
         Student GetStudentById(int studentId);
         
-        Student GetStudentByCpf(string cpf);
+        Student? GetStudentByCpf(string cpf);
         
         Student GetStudentByName(Name name);
         
@@ -18,7 +18,7 @@ namespace Employer.Domain.IRepository
 
         void CreateStudent(Student student);
 
-        void DeleteStudent(int studentId);
+        void DeleteStudent(Student studentId);
 
         void UpdateStudent(Student student);
 

@@ -9,7 +9,7 @@ namespace Employer.CLI
     {
         static void Main(string[] args)
         {
-            
+
             var option = "";
             while (option != "0")
             {

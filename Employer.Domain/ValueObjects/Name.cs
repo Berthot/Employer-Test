@@ -15,19 +15,24 @@ namespace Employer.Domain.ValueObjects
         public string Surname { get; set; }
 
 
-        public bool Validate()
+        private bool Validate()
         {
-            return ValidateFirstName() || ValidateSurname();
+            return NotValidateFirstName() || NotValidateSurname();
         }
 
-        private bool ValidateFirstName()
+        public bool NotValidateFirstName()
         {
-            return Regex.IsMatch(FirstName, @"^[a-zA-Z]{50}$");
+            return Regex.IsMatch(FirstName, @"[a-zA-Z]") == false;
         }
         
-        private bool ValidateSurname()
+        public bool NotValidateFirstNameLenght()
         {
-            return Surname.Length <= 50;
+            return (FirstName.Length <= 50) == false;
+        }
+        
+        public bool NotValidateSurname()
+        {
+            return (Surname.Length <= 50) == false;
         }
 
         public string GetFullName()
