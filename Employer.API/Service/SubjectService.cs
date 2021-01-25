@@ -81,5 +81,15 @@ namespace Employer.API.Service
                 return default;
             }
         }
+
+        public void CreateSubject(Subject subjectModel)
+        {
+            _repo.CreateSubject(subjectModel);
+        }
+
+        public void DeleteSubject(Subject subjectModel)
+        {
+            _repo.DeleteSubject(subjectModel);
+        }
     }
 }

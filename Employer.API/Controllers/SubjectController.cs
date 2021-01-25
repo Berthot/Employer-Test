@@ -16,10 +16,6 @@ namespace Employer.API.Controllers
 
         private readonly SubjectService _service = new SubjectService();
 
-        private readonly ISubjectRepository _repo = new SubjectRepository(new Context());
-
-
-
         [HttpPost]
         [Route("")]
         public ActionResult<SubjectDto> Post(
@@ -32,7 +28,7 @@ namespace Employer.API.Controllers
                 var validate = _service.ValidateCreateSubject(subjectModel);
                 if (validate.Count != 0)
                     return BadRequest(validate);
-                _repo.CreateSubject(subjectModel);
+                _service.CreateSubject(subjectModel);
                 
                 return Ok(_service.SubjectToDtoSubject(subjectModel));
             }
@@ -53,7 +49,7 @@ namespace Employer.API.Controllers
                 var subjectModel = _service.GetSubjectToDelete(subjectDto);
                 if (subjectModel == default)
                     return BadRequest(new List<string>{"Materia não cadastrada no sistema"});
-                _repo.DeleteSubject(subjectModel);
+                _service.DeleteSubject(subjectModel);
                 
                 return Ok(new List<string>(){$"A materia: [ {subjectModel.Description.Name} ] foi excomungada"});
 

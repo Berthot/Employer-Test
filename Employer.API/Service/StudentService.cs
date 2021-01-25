@@ -14,7 +14,7 @@ namespace Employer.API.Service
     {
         private readonly IStudentRepository _repo = new StudentRepository(new Context());
 
-        
+
         public Student BuildStudent(StudentDto studentDto)
         {
             return new Student(
@@ -25,15 +25,28 @@ namespace Employer.API.Service
             );
         }
 
+        public List<string> ValidateFieldEmpty(StudentDto studentDto)
+        {
+            var badRequest = new List<string>();
+            if (studentDto.Name.Length == 0)
+                badRequest.Add("Name esta vazio");
+            if (studentDto.Cpf.Length == 0)
+                badRequest.Add("Cpf esta vazio");
+            if (studentDto.Course.Length == 0)
+                badRequest.Add("Course esta vazio");
+            if (studentDto.BirthDate.Length == 0)
+                badRequest.Add("BirthDate esta vazio");
+            return badRequest;
+        }
+
 
         public List<string> ValidateCreateStudent(Student studentModel)
         {
-
             var badRequest = new List<string>();
             if (studentModel.Cpf.NotValidate())
                 badRequest.Add("Cpf não valido");
             if (studentModel.Name.NotValidateFirstName())
-                badRequest.Add("Primeiro nome não é valido, somente letras são permitidas");            
+                badRequest.Add("Primeiro nome não é valido, somente letras são permitidas");
             if (studentModel.Name.NotValidateFirstNameLenght())
                 badRequest.Add("Primeiro nome não é valido, tamanho maximo de acima de 50 caracteres");
             if (studentModel.Name.NotValidateSurname())
@@ -46,13 +59,13 @@ namespace Employer.API.Service
                 badRequest.Add("Cpf ja esta cadastro no sistema");
             return badRequest;
         }
-        
+
 
         public Student GetStudentByCpf(string cpfCode)
         {
             return _repo.GetStudentByCpf(cpfCode);
         }
-        
+
 
         public StudentDto StudentToDtoStudent(Student studentModel)
         {
@@ -70,24 +83,29 @@ namespace Employer.API.Service
             {
                 return default;
             }
-
         }
 
         public List<StudentNotesDto> GetAllStudentNotes(string cpf)
         {
             var student = GetFullStudentByCpf(cpf);
-            return student?.StudentSubjectMaps.Select(map => new StudentNotesDto(map.Subject.Description.Name, map.Note)).ToList();
+            return student?.StudentSubjectMaps
+                .Select(map => new StudentNotesDto(map.Subject.Description.Name, map.Note)).ToList();
         }
 
         private Student GetFullStudentByCpf(string cpf)
         {
             return _repo.GetStudentFullByCpf(cpf);
-
         }
 
-        // public List<StudentNotesDto> GetStudentNotesDto(List<StudentSubjectMap> list)
-        // {
-        //     return list.Select(x => new StudentNotesDto(x));
-        // }
+        public void CreateStudent(Student studentModel)
+        {
+            _repo.CreateStudent(studentModel);
+        }
+
+        public void DeleteStudent(Student studentModel)
+        {
+            _repo.DeleteStudent(studentModel);
+        }
     }
+
 }

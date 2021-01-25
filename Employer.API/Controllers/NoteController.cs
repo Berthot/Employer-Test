@@ -15,8 +15,6 @@ namespace Employer.API.Controllers
     {
         private readonly NoteService _service = new NoteService();
 
-        private readonly IStudentSubjectMapRepository _repo = new StudentSubjectMapRepository(new Context());
-
         [HttpPost]
         [Route("")]
         public ActionResult<NoteDto> Post([FromBody] NoteDto note)
@@ -28,7 +26,6 @@ namespace Employer.API.Controllers
                 if (validate.Count != 0)
                     return BadRequest(validate);
                 _service.Create(noteModel);
-                // _repo.CreateCreateStudentSubjectMap(noteModel);
                 return Ok(_service.NoteToDto(noteModel));
             }
             catch (Exception)
