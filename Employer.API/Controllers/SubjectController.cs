@@ -24,6 +24,9 @@ namespace Employer.API.Controllers
         {
             try
             {
+                var fields = _service.ValidateEmptyField(subjectDto);
+                if (fields.Count != 0)
+                    return BadRequest(fields);
                 var subjectModel = _service.BuildSubject(subjectDto);
                 var validate = _service.ValidateCreateSubject(subjectModel);
                 if (validate.Count != 0)
@@ -46,6 +49,9 @@ namespace Employer.API.Controllers
         {
             try
             {
+                var fields = _service.ValidateEmptyField(subjectDto);
+                if (fields.Count != 0)
+                    return BadRequest(fields);
                 var subjectModel = _service.GetSubjectToDelete(subjectDto);
                 if (subjectModel == default)
                     return BadRequest(new List<string>{"Materia não cadastrada no sistema"});

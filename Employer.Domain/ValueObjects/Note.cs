@@ -39,7 +39,7 @@ namespace Employer.Domain.ValueObjects
 
         public bool NotValid()
         {
-            return Value > 101 && Value < -1;
+            return Value >= 101 || Value <= -1;
         }
     }
 }

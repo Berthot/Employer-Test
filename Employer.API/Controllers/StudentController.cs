@@ -23,6 +23,9 @@ namespace Employer.API.Controllers
         {
             try
             {
+                var fields = _service.ValidateFieldEmpty(student);
+                if (fields.Count != 0)
+                    return BadRequest(fields);
                 var studentModel = _service.BuildStudent(student);
                 var validate = _service.ValidateCreateStudent(studentModel);
                 if (validate.Count != 0)
@@ -45,6 +48,9 @@ namespace Employer.API.Controllers
         {
             try
             {
+                var fields = _service.ValidateFieldEmpty(student);
+                if (fields.Count != 0)
+                    return BadRequest(fields);
                 var studentModel = _service.GetStudentToDelete(student);
                 if (studentModel == default)
                     return BadRequest(new List<string>{"Estudante não cadastrado no sistema"});

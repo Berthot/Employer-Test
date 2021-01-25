@@ -21,6 +21,9 @@ namespace Employer.API.Controllers
         {
             try
             {
+                var fields = _service.ValidateEmptyField(note);
+                if (fields.Count != 0)
+                    return BadRequest(fields);
                 var noteModel = _service.BuildStudentNote(note);
                 var validate = _service.ValidateCreateNote(noteModel);
                 if (validate.Count != 0)
@@ -42,6 +45,9 @@ namespace Employer.API.Controllers
         {
             try
             {
+                var fields = _service.ValidateEmptyField(note);
+                if (fields.Count != 0)
+                    return BadRequest(fields);
                 var noteModel = _service.BuildStudentNote(note);
                 var validate = _service.ValidateDeleteNote(noteModel);
                 if (validate.Count != 0)

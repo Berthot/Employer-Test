@@ -15,7 +15,25 @@ namespace Employer.API.Service
     {
         private readonly IStudentSubjectMapRepository _repo = new StudentSubjectMapRepository(new Context());
 
+        public List<string> ValidateEmptyField(NoteDto note)
+        {
+            var badRequest = new List<string>();
+            if (note.StudentCpf.Length == 0)
+                badRequest.Add("Cpf do estudante esta vazio");
+            if (note.Description.Length == 0)
+                badRequest.Add("Descricao esta vazia");
+            if (note.Note.Length == 0)
+                badRequest.Add("Nota esta vazia");
+            return badRequest;
+        }
 
+        public StudentSubjectMap BuildStudentNote(NoteDto note)
+        {
+            var student = GetStudentByCpf(note.StudentCpf);
+            var subject = GetSubjectByDescription(note.Description.ToLower());
+            var noteObj = new Note(note.Note);
+            return new StudentSubjectMap(student, subject, noteObj);
+        }
         public List<string> ValidateCreateNote(StudentSubjectMap note)
         {
 
@@ -41,13 +59,7 @@ namespace Employer.API.Service
 
         }
 
-        public StudentSubjectMap BuildStudentNote(NoteDto note)
-        {
-            var student = GetStudentByCpf(note.StudentCpf);
-            var subject = GetSubjectByDescription(note.Description.ToLower());
-            var noteObj = new Note(note.Note);
-            return new StudentSubjectMap(student, subject, noteObj);
-        }
+
         
         public Student GetStudentByCpf(string cpfCode)
         {

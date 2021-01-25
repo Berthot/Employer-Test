@@ -18,9 +18,9 @@ namespace Employer.API.Service
         public Student BuildStudent(StudentDto studentDto)
         {
             return new Student(
-                new Name(studentDto.Name, studentDto.Surname),
+                new Name(studentDto.Name.ToLower(), studentDto.Surname.ToLower()),
                 new Cpf(studentDto.Cpf),
-                studentDto.Course,
+                studentDto.Course.ToLower(),
                 new Date(studentDto.BirthDate)
             );
         }
@@ -54,7 +54,7 @@ namespace Employer.API.Service
             if (studentModel.BirthDate.NotValidateDateFormat())
                 badRequest.Add("Formato da data esta preenchido incorretamente modelo [ DD/MM/AAAA ] ");
             if (studentModel.BirthDate.NotValidateDate())
-                badRequest.Add("Data informada superior á [ 01/01/2002 ] ");
+                badRequest.Add("Data informada deve ser superior á [ 01/01/2002 ] ");
             if (GetStudentByCpf(studentModel.Cpf.Code) != default)
                 badRequest.Add("Cpf ja esta cadastro no sistema");
             return badRequest;

@@ -14,6 +14,18 @@ namespace Employer.API.Service
     {
         private readonly ISubjectRepository _repo = new SubjectRepository(new Context());
 
+
+        public List<string> ValidateEmptyField(SubjectDto subjectDto)
+        {
+            var badRequest = new List<string>();
+            if (subjectDto.Description.Length == 0)
+                badRequest.Add("Matéria esta vazio");
+            if (subjectDto.Situation.Length == 0)
+                badRequest.Add("Situação esta vazio");
+            if (subjectDto.RegistrationDate.Length == 0)
+                badRequest.Add("Data esta vazio");
+            return badRequest;
+        }
         public Subject BuildSubject(SubjectDto subjectDto)
         {
             return new Subject(

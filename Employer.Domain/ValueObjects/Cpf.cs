@@ -13,7 +13,9 @@ namespace Employer.Domain.ValueObjects
 
         public bool NotValidate()
         {
-            return (Regex.IsMatch(Code, "[0-9]") && NotValidateCpfLenght()) == false;
+            // return (Regex.IsMatch(Code, "[0-9]") && NotValidateCpfLenght()) == false;
+            return Regex.IsMatch(Code, @"^([0-9])+$") == false;
+
         }
         
         public bool NotValidateCpfLenght()
