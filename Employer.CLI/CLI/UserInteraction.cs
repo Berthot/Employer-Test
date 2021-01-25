@@ -1,5 +1,4 @@
 using System;
-using Employer.CLI.DTO;
 
 namespace Employer.CLI.CLI
 {

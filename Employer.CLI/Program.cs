@@ -1,8 +1,6 @@
 ﻿using System;
 using Employer.CLI.Application;
 using Employer.CLI.CLI;
-using Employer.CLI.Controller;
-using Employer.CLI.DTO;
 using Employer.CLI.Service;
 
 namespace Employer.CLI

@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Runtime.Intrinsics.X86;
-using Employer.Domain.Entities;
 using Employer.Domain.ValueObjects;
 
 namespace Employer.Domain.DTO

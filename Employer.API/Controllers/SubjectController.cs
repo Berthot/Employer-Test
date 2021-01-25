@@ -2,9 +2,6 @@ using System;
 using System.Collections.Generic;
 using Employer.API.Service;
 using Employer.Domain.DTO;
-using Employer.Domain.IRepository;
-using Employer.Infra.Data;
-using Employer.Infra.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employer.API.Controllers

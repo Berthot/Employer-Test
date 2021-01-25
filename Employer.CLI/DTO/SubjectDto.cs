@@ -1,5 +1,3 @@
-using System;
-
 namespace Employer.CLI.DTO
 {
     public class SubjectDto
