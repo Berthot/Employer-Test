@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Employer.API.Service;
 using Employer.Domain.DTO;
 using Employer.Domain.IRepository;
@@ -55,7 +54,7 @@ namespace Employer.API.Controllers
                     return BadRequest(new List<string>{"Estudante não cadastrado no sistema"});
                 _repo.DeleteStudent(studentModel); // TODO deixar com a service fazer isso
 
-                return Ok($"Estudante portador do cpf: [ {studentModel.Cpf.Code} ] foi excomungado");
+                return Ok(new List<string>{$"Estudante portador do cpf [ {studentModel.Cpf.Code} ] foi excomungado"});
             }
             catch (Exception)
             {

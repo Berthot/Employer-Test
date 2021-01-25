@@ -53,7 +53,7 @@ namespace Employer.API.Controllers
                 if(toDelete == default)
                     return BadRequest(new List<string> {"Não foi encontrar a nota para deletar"});
                 _service.DeleteNote(toDelete);
-                return Ok(_service.NoteToDto(toDelete));
+                return Ok(new List<string>(){"Nota deletada"});
 
             }
             catch (Exception)

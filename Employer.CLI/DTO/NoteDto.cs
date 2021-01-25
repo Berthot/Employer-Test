@@ -2,18 +2,21 @@ namespace Employer.CLI.DTO
 {
     public class NoteDto
     {
-        public NoteDto(string student, string subjectName, string note, string studentCpf)
+        public NoteDto(string student, string description, string note, string studentCpf)
         {
             Student = student;
-            SubjectName = subjectName;
+            Description = description;
             Note = note;
             StudentCpf = studentCpf;
         }
 
+        public NoteDto()
+        {
+        }
+
         public string Student { get; set; }
-        
         public string StudentCpf { get; set; }
-        public string SubjectName { get; set; }
+        public string Description { get; set; }
         public string Note { get; set; }
     }
 }

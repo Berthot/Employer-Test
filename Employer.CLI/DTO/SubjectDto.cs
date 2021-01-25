@@ -4,14 +4,18 @@ namespace Employer.CLI.DTO
 {
     public class SubjectDto
     {
-        public SubjectDto(string description, string situation, string registrationDate)
+        public SubjectDto()
         {
-            Description = description;
-            Situation = situation;
-            RegistrationDate = registrationDate;
         }
 
-        public int Id { get; set; }
+        public SubjectDto(string description, string date, string situation)
+        {
+            Description = description;
+            RegistrationDate = date;
+            Situation = situation;
+        }
+
+        public string Id { get; set; }
         
         public string Description { get; set; }
         
@@ -19,8 +23,9 @@ namespace Employer.CLI.DTO
         
         public string RegistrationDate { get; set; }
         
-        public DateTime CreateAt { get; set; }
+        public string CreateAt { get; set; }
         
-        public DateTime UpdateAt { get; set; }
+        public string UpdateAt { get; set; }
+        
     }
 }

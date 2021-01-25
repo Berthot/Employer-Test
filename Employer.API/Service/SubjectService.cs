@@ -32,6 +32,16 @@ namespace Employer.API.Service
                 _ => ESituation.NotValid
             };
         }
+        
+        private string SetSituationString(ESituation situation)
+        {
+            return situation switch
+            {
+                ESituation.Active => "ativo",
+                ESituation.Inactive => "inativo",
+                _ => ""
+            };
+        }
 
         public List<string> ValidateCreateSubject(Subject subjectModel)
         {

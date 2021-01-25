@@ -23,7 +23,8 @@ namespace Employer.API.Controllers
         [HttpPost]
         [Route("")]
         public ActionResult<SubjectDto> Post(
-            [FromBody] SubjectDto subjectDto)
+            [FromBody] SubjectDto subjectDto
+            )
         {
             try
             {
@@ -54,7 +55,7 @@ namespace Employer.API.Controllers
                     return BadRequest(new List<string>{"Materia não cadastrada no sistema"});
                 _repo.DeleteSubject(subjectModel);
                 
-                return Ok($"A materia: [ {subjectModel.Description.Name} ] foi excomungada");
+                return Ok(new List<string>(){$"A materia: [ {subjectModel.Description.Name} ] foi excomungada"});
 
             }
             catch (Exception)

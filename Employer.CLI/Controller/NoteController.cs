@@ -7,13 +7,12 @@ using Newtonsoft.Json;
 
 namespace Employer.CLI.Controller
 {
-    public class StudentController
+    public class NoteController
     {
-        public object CreateNewStudentPost(StudentDto studentDto)
+        public object CreateNote(NoteDto noteDto)
         {
-            
-            const string url = "http://localhost:5000/Student";
-            var data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(studentDto));
+            const string url = "http://localhost:5000/Note";
+            var data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(noteDto));
             var requestWeb = WebRequest.CreateHttp(url);
             // 'desabilitar' ssl
             requestWeb.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
@@ -26,15 +25,14 @@ namespace Employer.CLI.Controller
                 stream.Write(data, 0, data.Length);
                 stream.Close();
             }
-            
+
             try
             {
                 using var resposta = requestWeb.GetResponse();
                 using var streamOne = resposta.GetResponseStream();
                 using var reader = new StreamReader(streamOne);
                 object objResponse = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<StudentDto>(objResponse.ToString());
-
+                return JsonConvert.DeserializeObject<NoteDto>(objResponse.ToString());
             }
             catch (WebException ex)
             {
@@ -42,13 +40,12 @@ namespace Employer.CLI.Controller
                 using var reader = new StreamReader(stream);
                 return JsonConvert.DeserializeObject<List<string>>(reader.ReadToEnd());
             }
- 
         }
 
-        public object DeleteStudent(StudentDto studentDto)
+        public object DeleteNote(NoteDto noteDto)
         {
-            const string url = "http://localhost:5000/Student";
-            var data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(studentDto));
+            const string url = "http://localhost:5000/Note";
+            var data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(noteDto));
             var requestWeb = WebRequest.CreateHttp(url);
             // 'desabilitar' ssl
             requestWeb.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
@@ -61,14 +58,13 @@ namespace Employer.CLI.Controller
                 stream.Write(data, 0, data.Length);
                 stream.Close();
             }
-            
+
             try
             {
                 using var resposta = requestWeb.GetResponse();
                 using var streamOne = resposta.GetResponseStream();
                 using var reader = new StreamReader(streamOne);
                 return JsonConvert.DeserializeObject<List<string>>(reader.ReadToEnd());
-
             }
             catch (WebException ex)
             {

@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using Employer.CLI.CLI;
+using Employer.CLI.Controller;
 using Employer.CLI.DTO;
 
 namespace Employer.CLI.Service
@@ -6,6 +9,7 @@ namespace Employer.CLI.Service
     public class StudentService
     {
 
+        private readonly StudentController _controller = new StudentController();
         public void RegisterNewStudent()
         {
             var studentDto = GetStudentDTO();
@@ -23,12 +27,37 @@ namespace Employer.CLI.Service
 
         private void SaveStudent(StudentDto studentDto)
         {
-            
+            var response = _controller.CreateNewStudentPost(studentDto);
+            if (response.GetType() == new StudentDto().GetType())
+            {
+                var obj = (StudentDto) response;
+                Console.WriteLine($"Cadastro de aluno realizado com sucesso numero de matricula [ {obj.Id.ToString()} ]");
+                UserInteraction.PressToBackToMenu();
+            }
+            else
+            {
+                var lista = (List<string>) response;
+                foreach (var bad in lista)
+                {
+                    Console.WriteLine($"ERR: {bad}");
+                }
+                Console.WriteLine("Erro ao cadastrar aluno");
+                UserInteraction.PressToBackToMenu();
+
+            }
+
         }
         
         private void DeleteStudent(StudentDto studentDto)
         {
-            
+            var response = _controller.DeleteStudent(studentDto);
+            var lista = (List<string>) response;
+            foreach (var bad in lista)
+            {
+                Console.WriteLine($"{bad}");
+            }
+            UserInteraction.PressToBackToMenu();
+
         }
 
         private StudentDto GetStudentDTO()

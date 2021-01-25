@@ -7,13 +7,14 @@ using Newtonsoft.Json;
 
 namespace Employer.CLI.Controller
 {
-    public class StudentController
+    public class SubjectController
     {
-        public object CreateNewStudentPost(StudentDto studentDto)
+
+        public object CreateNewSubject(SubjectDto subjectDto)
         {
             
-            const string url = "http://localhost:5000/Student";
-            var data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(studentDto));
+            const string url = "http://localhost:5000/Subject";
+            var data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(subjectDto));
             var requestWeb = WebRequest.CreateHttp(url);
             // 'desabilitar' ssl
             requestWeb.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
@@ -33,7 +34,7 @@ namespace Employer.CLI.Controller
                 using var streamOne = resposta.GetResponseStream();
                 using var reader = new StreamReader(streamOne);
                 object objResponse = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<StudentDto>(objResponse.ToString());
+                return JsonConvert.DeserializeObject<SubjectDto>(objResponse.ToString());
 
             }
             catch (WebException ex)
@@ -45,10 +46,10 @@ namespace Employer.CLI.Controller
  
         }
 
-        public object DeleteStudent(StudentDto studentDto)
+        public object DeleteSubject(SubjectDto subjectDto)
         {
-            const string url = "http://localhost:5000/Student";
-            var data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(studentDto));
+            const string url = "http://localhost:5000/Subject";
+            var data = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(subjectDto));
             var requestWeb = WebRequest.CreateHttp(url);
             // 'desabilitar' ssl
             requestWeb.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;

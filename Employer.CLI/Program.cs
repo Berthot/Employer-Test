@@ -1,6 +1,8 @@
 ﻿using System;
 using Employer.CLI.Application;
 using Employer.CLI.CLI;
+using Employer.CLI.Controller;
+using Employer.CLI.DTO;
 using Employer.CLI.Service;
 
 namespace Employer.CLI
@@ -9,7 +11,6 @@ namespace Employer.CLI
     {
         static void Main(string[] args)
         {
-
             var option = "";
             while (option != "0")
             {

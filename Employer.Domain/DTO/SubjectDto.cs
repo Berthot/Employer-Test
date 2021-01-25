@@ -1,17 +1,12 @@
 using System;
 using System.Globalization;
 using Employer.Domain.Entities;
+using Employer.Domain.Enum;
 
 namespace Employer.Domain.DTO
 {
     public class SubjectDto
     {
-        public SubjectDto(string description, string situation, string registrationDate)
-        {
-            Description = description;
-            Situation = situation;
-            RegistrationDate = registrationDate;
-        }
 
         public SubjectDto()
         {
@@ -21,11 +16,12 @@ namespace Employer.Domain.DTO
         {
             Id = subjectModel.Id.ToString();
             Description = subjectModel.Description.Name;
-            Situation = subjectModel.Situation.ToString();
-            RegistrationDate = subjectModel.RegistrationDate.Code.ToString(CultureInfo.CurrentCulture);
-            CreateAt = subjectModel.CreateAt;
-            UpdateAt = subjectModel.UpdateAt;
+            Situation = SetSituationString(subjectModel.Situation);
+            RegistrationDate = subjectModel.RegistrationDate.Code.Date.ToString();
+            CreateAt = subjectModel.CreateAt.Date.ToString();
+            UpdateAt = subjectModel.UpdateAt.Date.ToString();
         }
+
 
 
         public string Id { get; set; }
@@ -36,8 +32,18 @@ namespace Employer.Domain.DTO
         
         public string RegistrationDate { get; set; }
         
-        public DateTime CreateAt { get; set; }
+        public string CreateAt { get; set; }
         
-        public DateTime UpdateAt { get; set; }
+        public string UpdateAt { get; set; }
+        
+        private string SetSituationString(ESituation situation)
+        {
+            return situation switch
+            {
+                ESituation.Active => "ativo",
+                ESituation.Inactive => "inativo",
+                _ => ""
+            };
+        }
     }
 }

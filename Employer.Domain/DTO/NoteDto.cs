@@ -1,5 +1,4 @@
 using Employer.Domain.Entities;
-using Employer.Domain.ValueObjects;
 
 namespace Employer.Domain.DTO
 {
