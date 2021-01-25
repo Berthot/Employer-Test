@@ -28,7 +28,7 @@ DER criado
 Antes de rodar em sua maquina lembre-se:
 
 ```
-Atualizar sua string de conexo do banco de dados: optionsBuilder.UseNpgsql();
+Atualizar sua string de conexão do banco de dados;
 Realize sua migration 😀 no terminal vá até a pasta Employer.Infra e digite "dotnet ef database update"
 Abra o terminar vá a até Employer.API e então execute "dotnet watch run" para deixar sua API ativa.
 Para abrir sua CLI, caso não use IDE, abra seu terminal vá até a pasta Employer.CLI e digite "dotnet run".
