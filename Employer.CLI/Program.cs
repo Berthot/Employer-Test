@@ -29,6 +29,7 @@ namespace Employer.CLI
                         new NoteService().RegisterNewSubject();
                         break;
                     case "4": // (4) Visualização de notas do aluno:
+                        new StudentApplication().GetStudentNotes();
                         break;
                     case "5": // (5) Relatorios:
                         break;

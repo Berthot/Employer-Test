@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Employer.Domain.DTO;
 using Employer.Domain.Entities;
 using Employer.Domain.IRepository;
@@ -71,5 +72,22 @@ namespace Employer.API.Service
             }
 
         }
+
+        public List<StudentNotesDto> GetAllStudentNotes(string cpf)
+        {
+            var student = GetFullStudentByCpf(cpf);
+            return student?.StudentSubjectMaps.Select(map => new StudentNotesDto(map.Subject.Description.Name, map.Note)).ToList();
+        }
+
+        private Student GetFullStudentByCpf(string cpf)
+        {
+            return _repo.GetStudentFullByCpf(cpf);
+
+        }
+
+        // public List<StudentNotesDto> GetStudentNotesDto(List<StudentSubjectMap> list)
+        // {
+        //     return list.Select(x => new StudentNotesDto(x));
+        // }
     }
 }

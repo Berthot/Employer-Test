@@ -77,5 +77,33 @@ namespace Employer.CLI.Controller
                 return JsonConvert.DeserializeObject<List<string>>(reader.ReadToEnd());
             }
         }
+        
+        public object GetStudentNoteByCpf(string cpf)
+        {
+            
+            var url = $"http://localhost:5000/Student/{cpf}";
+            var requestWeb = WebRequest.CreateHttp(url);
+            // 'desabilitar' ssl
+            requestWeb.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
+            requestWeb.Method = "GET";
+            requestWeb.ContentType = "application/json";
+            requestWeb.UserAgent = "RequisicaoWebDemo";
+            try
+            {
+                using var resposta = requestWeb.GetResponse();
+                using var streamOne = resposta.GetResponseStream();
+                using var reader = new StreamReader(streamOne);
+                object objResponse = reader.ReadToEnd();
+                return JsonConvert.DeserializeObject<List<StudentNotesDto>>(objResponse.ToString());
+
+            }
+            catch (WebException ex)
+            {
+                using var stream = ex.Response.GetResponseStream();
+                using var reader = new StreamReader(stream);
+                return JsonConvert.DeserializeObject<List<string>>(reader.ReadToEnd());
+            }
+ 
+        }
     }
 }

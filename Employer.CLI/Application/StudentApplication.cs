@@ -10,5 +10,10 @@ namespace Employer.CLI.Application
         {
             _service.RegisterNewStudent();
         }
+
+        public void GetStudentNotes()
+        {
+            _service.GetStudentNote();
+        }
     }
 }

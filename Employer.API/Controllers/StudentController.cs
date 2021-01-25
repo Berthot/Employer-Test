@@ -62,6 +62,25 @@ namespace Employer.API.Controllers
             }
         }
         
+                        
+        [HttpGet]
+        [Route("{cpf}")]
+        public ActionResult<List<StudentNotesDto>> GetByCpf(string cpf)
+        {
+            try
+            {
+                var students = _service.GetAllStudentNotes(cpf);
+                if(students == default)
+                    return BadRequest(new List<string>{"Estudante não cadastrado no sistema"});
+                return Ok(students);
+            }
+            catch (Exception)
+            {
+                return BadRequest(new List<string>{"Não foi possivel captar informações dos estudantes"});
+            }
+        }
+
+        
         
     }
 }

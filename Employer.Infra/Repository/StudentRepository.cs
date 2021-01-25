@@ -85,5 +85,13 @@ namespace Employer.Infra.Repository
         {
             _context.SaveChanges();
         }
+
+        public Student GetStudentFullByCpf(string cpfCode)
+        {
+            return _context.Students
+                .Include(x=>x.StudentSubjectMaps)
+                    .ThenInclude(x=>x.Subject)
+                .FirstOrDefault(x => x.Cpf.Code == cpfCode);
+        }
     }
 }

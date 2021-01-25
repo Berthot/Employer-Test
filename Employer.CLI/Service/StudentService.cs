@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Employer.CLI.CLI;
 using Employer.CLI.Controller;
 using Employer.CLI.DTO;
@@ -22,6 +23,51 @@ namespace Employer.CLI.Service
                 case "3":
                     DeleteStudent(studentDto);
                     return;
+            }
+        }
+
+        public void GetStudentNote()
+        {
+            var studentNoteDto = GetStudentNotesDto();
+            var option = UserInteraction.MenuOptionTwo();
+            switch (option)
+            {
+                case "2":
+                    ShowStudentNotes(studentNoteDto);
+                    return;
+            }
+        }
+
+        private void ShowStudentNotes(string studentNoteDto)
+        {
+            var response = _controller.GetStudentNoteByCpf(studentNoteDto);
+            if (response.GetType() == new List<StudentNotesDto>().GetType())
+            {
+                var obj = (List<StudentNotesDto>) response;
+                var studentNotesDtos = obj.OrderBy(x => x.Description);
+                var last = "";
+                foreach (var map in studentNotesDtos)
+                {
+                    if (last != map.Description)
+                    {
+                        last = map.Description;
+                        Console.WriteLine($"------------    {map.Description.ToUpper()}    ------------");
+                    }
+
+                    Console.WriteLine($"Nota: {map.Note}");
+                }
+                UserInteraction.PressToBackToMenu();
+            }
+            else
+            {
+                var lista = (List<string>) response;
+                foreach (var bad in lista)
+                {
+                    Console.WriteLine($"ERR: {bad}");
+                }
+                Console.WriteLine("Erro ao ler dados do aluno");
+                UserInteraction.PressToBackToMenu();
+
             }
         }
 
@@ -58,6 +104,10 @@ namespace Employer.CLI.Service
             }
             UserInteraction.PressToBackToMenu();
 
+        }
+        private string GetStudentNotesDto()
+        {
+            return UserInteraction.FieldToFill("Cpf - (somente os numeros)");
         }
 
         private StudentDto GetStudentDTO()

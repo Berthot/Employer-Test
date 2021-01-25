@@ -23,6 +23,7 @@ namespace Employer.Domain.IRepository
         void UpdateStudent(Student student);
 
         void Save();
-        
+
+        Student GetStudentFullByCpf(string cpfCode);
     }
 }
