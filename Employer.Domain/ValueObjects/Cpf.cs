@@ -6,7 +6,7 @@ namespace Employer.Domain.ValueObjects
     {
         public Cpf(string code)
         {
-            Code = code;
+            Code = code.Trim();
         }
 
         public string Code { get; set; }
@@ -20,7 +20,7 @@ namespace Employer.Domain.ValueObjects
         
         public bool NotValidateCpfLenght()
         {
-            return Code.Length <= 11;
+            return Code.Length != 11;
         }
     }
 }
