@@ -13,7 +13,7 @@ namespace Employer.CLI.CLI
                 " (2) Cadastro de materia",
                 " (3) Cadastro de Nota",
                 " (4) Visualização de notas do aluno",
-                " (5) Relatorios",
+                // " (5) Relatorios",
                 " (0) Sair",
             };
             PrintMenu(text, textLenght);

@@ -29,8 +29,8 @@ namespace Employer.CLI
                     case "4": // (4) Visualização de notas do aluno:
                         new StudentApplication().GetStudentNotes();
                         break;
-                    case "5": // (5) Relatorios:
-                        break;
+                    // case "5": // (5) Relatorios:
+                    //     break;
                     default:
                         continue;
                 }
