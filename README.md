@@ -1,6 +1,6 @@
 # Employer Test
 
-## Desafio da empresa Employer
+## Desafio Employer
 ------------------------------------------------------------
 
 Projeto utilizando C#, .NET 5.0, Postgres, EntityFrameworkCore.
