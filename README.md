@@ -1,6 +1,6 @@
 # Employer Test
 
-## Desafio Employer
+## Desafio Employer 48h para ser desenvolvido
 ------------------------------------------------------------
 
 Projeto utilizando C#, .NET 5.0, Postgres, EntityFrameworkCore.
